@@ -213,5 +213,27 @@ print("Freq Internet Usage: ")
 frq_plot_draw(ad$`Daily Internet Usage`)
 ```
 
+# Bivariate Analysis:
+
+```{r}
+# Functions
+# Scatter plots
+
+# Plot the chart for cars with weight between 2.5 to 5 and mileage between 15 and 30.
+plot(x = ad$`Daily Time Spent on Site` ,y = ad$Age,xlab = "Age",ylab = "Time Spent on Site")
+
+plot(x = ad$`Area Income` ,y = ad$Age,xlab = "Income",ylab = "Age")
+
+plot(x = ad$`Daily Internet Usage` ,y = ad$Age,xlab = "Internet Usage",ylab = "Age")
+# Correlation Matrix
+
+```
+
+```{r}
+
+scat_draw(ad&Age,ad$`Daily Time Spent on Site`,"Age","Time spent on site")
+
+
+```
 
 
