@@ -1,0 +1,217 @@
+# Munyala Eliud Amatika
+
+## IP R programming
+
+
+# Some code help got them here 
+# [https://blog.datascienceheroes.com/exploratory-data-analysis-in-r-intro/]
+```
+Research Question
+
+A Kenyan entrepreneur has created an online cryptography course and would want to advertise it on her blog. She currently targets audiences originating from various countries. In the past, she ran ads to advertise a related course on the same blog and collected data in the process. She would now like to employ your services as a Data Science Consultant to help her identify which individuals are most likely to click on her ads. 
+```
+
+
+```{r}
+# Make some install 
+#install.packages("tidyverse")
+#install.packages("funModeling")
+#install.packages("Hmisc")
+```
+
+
+```{r}
+library(funModeling) 
+library(tidyverse) 
+library(Hmisc)
+```
+
+
+
+```{r}
+# loading our data
+library(data.table)
+
+ad <- fread('advertising.csv')
+head(ad)
+```
+
+# ============================== Exploratory Data Analysis  ===================================
+
+## 1. Data Checks
+```{r}
+summary(ad)
+```
+
+
+```{r}
+# check null values
+colSums(is.na(ad))
+```
+```{r}
+# Previewing the dataset
+# ---
+# 
+
+str(ad)
+
+```
+
+
+```{r}
+print("Dimensions: ")
+dim(ad)
+print("Class type: ")
+class(ad)
+```
+
+```
+# Observations
+
+## there is no null values,hence no need to for filling or removing values.
+```
+
+## 2.Checking duplicated values
+
+```{r}
+# duplicated rows
+duplicated_rows <- ad[duplicated(ad),]
+duplicated_rows
+```
+
+
+```{r}
+# duplicated columns
+duplicated_cols <- ad[,duplicated(ad)]
+duplicated_cols
+```
+
+```
+# Observations
+
+## there is no duplicated values,hence no need to for removing duplicated values.
+```
+
+```{r}
+head(ad,6)
+```
+
+> Frequency table
+
+```{r}
+table(ad$Age)
+```
+
+# =============== UNIVARIATE ANALYSIS =========================================
+```{r}
+colnames(ad)
+```
+
+```{r}
+# functions
+
+mean_func <- function(x){
+  mean(x)
+}
+
+median_func <- function(x){
+  median(x)
+}
+
+```
+
+
+# Check mean 
+```{r}
+print("Mean of Time Spent: ")
+mean_func(ad$`Daily Time Spent on Site`)
+
+print("Mean of Age: ")
+mean_func(ad$Age)
+
+
+print("Mean of Internet Usage: ")
+mean_func(ad$`Daily Internet Usage`)
+```
+
+# check median
+```{r}
+
+print("Median of Time Spent: ")
+median_func(ad$`Daily Time Spent on Site`)
+
+print("Median of Age: ")
+median_func(ad$Age)
+
+
+print("Median of Internet Usage: ")
+median_func(ad$`Daily Internet Usage`)
+```
+
+
+# plot graph
+```{r}
+# boxplot
+box_draw <- function(x){
+  frequency_data <- table(x)
+  boxplot(x)
+}
+
+bar_draw <- function(x){
+  frequency_data <- table(x)
+  barplot(x)
+}
+
+frq_plot_draw <- function(x){
+  call_freq <- table(x)
+  barplot(call_freq)
+}
+```
+
+
+```{r}
+# box plots
+print("Boxplot of Time Spent: ")
+box_draw(ad$`Daily Time Spent on Site`)
+
+print("Boxplot of Age: ")
+box_draw(ad$Age)
+
+
+print("Boxplot Internet Usage: ")
+box_draw(ad$`Daily Internet Usage`)
+
+```
+
+
+```{r}
+# Bar plots
+print("Barplot of Time Spent: ")
+#bar_draw(ad$`Daily Time Spent on Site`)
+bar_draw(ad$`Daily Time Spent on Site`)
+
+print("Barplot of Age: ")
+bar_draw(ad$Age)
+
+
+print("Barplot Internet Usage: ")
+bar_draw(ad$`Daily Internet Usage`)
+```
+
+
+```{r}
+# Frequency table
+# Bar plots
+print("Freq of Time Spent: ")
+frq_plot_draw(ad$`Daily Internet Usage`)
+
+print("Freq of Age: ")
+frq_plot_draw(ad$Age)
+
+
+print("Freq Internet Usage: ")
+frq_plot_draw(ad$`Daily Internet Usage`)
+```
+
+
+
